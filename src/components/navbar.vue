@@ -20,7 +20,7 @@ onMounted(() => {
   <nav class="w-full z-50" :class="isHomePage ? 'absolute' : 'fixed top-0 bg-white shadow-sm'">
     <div class="max-w-screen-xl mx-auto flex flex-wrap items-center justify-between gap-5 px-5 py-2.5">
       <RouterLink to="/">
-        <img :src="isHomePage ? 'src/assets/logo/logo2.png' : 'src/assets/logo/logo1.png'" alt="ERI logo" class="h-14" />
+        <img :src="isHomePage ? 'src/assets/logo/logo-2.png' : 'src/assets/logo/logo-1.png'" alt="ERI logo" class="h-14" />
       </RouterLink>
       <div class="flex items-center lg:order-2 space-x-3 lg:space-x-0">
         <a href="https://erisaddlery.mygostore.com/" target="_blank" class="px-5 py-2.5 font-medium text-white rounded-lg" :class="isHomePage ? 'bg-secondary-500' : 'bg-primary-500'">Go to store</a>

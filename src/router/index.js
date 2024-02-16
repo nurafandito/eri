@@ -6,13 +6,13 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: () => import('../views/home.vue'),
+      component: () => import('../views/coming-soon.vue'),
     },
     {
-      path: '/about',
+      path: '/about-us',
       name: 'about',
       component: () => import('../views/about.vue'),
-      meta: { title: 'About' },
+      meta: { title: 'About Us' },
     },
     {
       path: '/consulting',
@@ -45,12 +45,6 @@ const router = createRouter({
       meta: { title: 'Media' },
     },
     {
-      path: '/product',
-      name: 'product',
-      component: () => import('../views/coming-soon.vue'),
-      meta: { title: 'Product' },
-    },
-    {
       path: '/publication',
       name: 'publication',
       component: () => import('../views/coming-soon.vue'),
@@ -62,19 +56,32 @@ const router = createRouter({
       component: () => import('../views/coming-soon.vue'),
       meta: { title: 'Resources' },
     },
+    {
+      path: '/contact-us',
+      name: 'contact',
+      component: () => import('../views/coming-soon.vue'),
+      meta: { title: 'Contact Us' },
+    },
+    {
+      path: '/:catchAll(.*)',
+      name: '404',
+      component: () => import('../views/404.vue'),
+      meta: { title: 'Error 404 (Not Found)' },
+    },
   ],
 });
 
+const maintenance = true;
+
 router.beforeEach((to, from, next) => {
   const defaultTitle = 'Equine Resources Indonesia';
+  document.title = to.name === '404' ? to.meta.title : to.meta.title ? `${to.meta.title} | ${defaultTitle}` : defaultTitle;
 
-  if (to.meta.title) {
-    document.title = `${to.meta.title} | ${defaultTitle}`;
+  if (maintenance && to.path !== '/') {
+    next({ name: 'home' });
   } else {
-    document.title = defaultTitle;
+    next();
   }
-
-  next();
 });
 
 router.afterEach(() => {
